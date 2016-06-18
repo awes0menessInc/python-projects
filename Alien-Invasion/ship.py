@@ -17,10 +17,10 @@ class Ship(Sprite):
 
         # Start new ship at the center-bottom of the screen
         self.rect.centerx = self.screen_rect.centerx
-        # self.rect.centery = self.screen_rect.centery
         self.rect.bottom = self.screen_rect.bottom
 
         # Store a decimal value for ship's center.
+        # Pygame rect attributes only store integer values.
         self.centerx = float(self.rect.centerx)
         self.centery = float(self.rect.centery)
 
@@ -29,6 +29,11 @@ class Ship(Sprite):
         self.moving_left = False
         self.moving_up = False
         self.moving_down = False
+
+    def center_ship(self):
+        """Center the ship on the screen."""
+        self.centerx = self.screen_rect.centerx
+        self.centery = self.screen_rect.bottom - 20
 
     def update(self):
         """ Update ship's position based on movement flag """
@@ -45,11 +50,6 @@ class Ship(Sprite):
         # Update rect value from self.center.
         self.rect.centerx = self.centerx
         self.rect.centery = self.centery
-
-    def center_ship(self):
-        """Center the ship on the screen."""
-        self.rect.centerx = self.screen_rect.centerx
-        self.rect.centery = self.screen_rect.bottom
 
     def blitme(self):
         """ Draw the ship at it's current position. """
